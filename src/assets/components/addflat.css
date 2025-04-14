@@ -1,0 +1,71 @@
+/* AddFlat.css */
+/* AddFlat.css */
+
+/* Container for centering the form on the screen */
+*{
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    font-size: 14px;
+    background-color:#ec8a8a ;
+}
+.add-flat{
+    background-color: whitesmoke;
+    height: 480px;
+    width: 400px;
+    padding: 25px;
+    margin:50px 50px 0px 200px;
+    border-top: 5px solid rgb(0, 115, 255);
+    box-shadow: 0 0 7px 5px  rgba(0, 0, 0, 0.5);
+}
+.title{
+    font-size: 24px;
+    line-height: 24px;
+    padding: 20px;
+    text-align: center;
+    
+}
+.form-control{
+    outline: none;
+}
+.card-footer{
+    text-align: center;
+    margin: 10px;
+}
+.button{
+    margin-bottom:10px ;
+    border-radius: 20px;
+    padding:10px ;
+    line-height: 15px;
+    width: 100px;
+    background-color: rgb(31, 20, 235);
+    color: white;
+    border:none ;
+    outline:none ;
+    cursor: pointer;
+}
+.button:hover{
+    background: green;
+}
+.light {
+    color: white;
+  }
+  .light:hover{
+    color:rgba(58, 58, 218, 0.934);
+  }
+:active.light:hover{
+    background: white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+.add-payment{
+    background-color: whitesmoke;
+    height: 550px;
+    width: 400px;
+    padding: 25px;
+    margin:50px 50px 0px 200px;
+    border-top: 5px solid rgb(0, 115, 255);
+    box-shadow: 0 0 7px 5px  rgba(0, 0, 0, 0.5);
+}

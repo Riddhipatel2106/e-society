@@ -1,0 +1,208 @@
+import axios from 'axios'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+
+export const AddFlat = () => {
+
+  const {register,handleSubmit} = useForm()
+
+  const submitHandler = async(data)=>{
+    console.log(data)
+
+    const res = await axios.post("/flat",data)
+    if(res.status === 201){
+      alert("user created falt")
+    }else{
+      alert("user not created")
+    }
+  }
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit(submitHandler)}>
+      <div>
+      <lable>Flat Number</lable>
+      <input type='text' {...register("flat_number")}></input>
+      </div>
+      
+      <div>
+      <lable>Floor</lable>
+      <input type='text' {...register("floor")}></input>
+      </div>
+      <div>
+      <lable>Block</lable>
+      <input type='text' {...register("block")}></input>
+      </div>
+      <div>
+      <lable>Owner Name</lable>
+      <input type='text' {...register("owner_name")}></input>
+      </div>
+      <div>
+      <lable>Phone No</lable>
+      <input type='text' {...register("phone_no")}></input>
+      </div>
+      <div>
+        <input type='submit'></input>
+      </div>
+      </form>
+    </div>
+  )
+}
+import axios from "axios";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import "../../components/login.css"
+
+export const Login = () => {
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+
+  const submitHandler = async (data) => {
+    try {
+      const res = await axios.post("/user/login", data);
+      console.log(res.data)
+      if (res.status === 200) {
+        alert("Login Success");
+        localStorage.setItem("id", res.data.data._id);
+        localStorage.setItem("role", res.data.data.roleId.name);
+
+        if (res.data.data.roleId.name === "USER") {
+          navigate("/user");
+        } else if (res.data.data.roleId.name === "society") {
+          navigate("/society");
+        }
+      }
+    } catch (error) {
+      alert("Login Failed");
+    }
+  };
+
+  return (
+    <div className="login">
+      <div className="login-card">
+        <div className="brand">
+          <div className="brand-logo"></div>
+          <h1>LOGIN USER</h1>
+          <p>Enter your credentials to access your account</p>
+        </div>
+        <form onSubmit={handleSubmit(submitHandler)}>
+          <div className="form-group">
+            <label htmlFor="email">EMAIL</label>
+            <input
+              type="text"
+              id="email"
+              {...register("email")}
+              placeholder="Enter email"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              {...register("password")}
+              placeholder="Enter password"
+            />
+          </div>
+          <div className="remember-forgot">
+            <div className="remember-me">
+              <input type="checkbox" id="remember" />
+              <label htmlFor="remember">Remember Me</label>
+            </div>
+            <a href="#" className="forgot-password">
+              Forgot Password?
+            </a>
+          </div>
+          <button type="submit" className="login-btn">
+            Login
+          </button>
+        </form>
+        <div className="social-login">
+          <p>Or login with</p>
+          <div className="social-buttons">
+            <div className="social-btn">G</div>
+            <div className="social-btn">F</div>
+          </div>
+        </div>
+        <div className="signup-link">
+          <p>
+            Don't have an account? <a href="#">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  
+
+  );
+};
+export const Login = () => {
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+
+  const submitHandler = async (data) => {
+    try {
+      // Make the POST request to the backend
+      const res = await axios.post("/user/login", data);
+      console.log(res.data); // Log the response to inspect its structure
+
+      // Check if the status is 200 (successful login)
+      if (res.status === 200) {
+        alert("Login Success");
+
+        // Store user information in local storage
+        localStorage.setItem("id", res.data.data._id);
+        localStorage.setItem("role", res.data.data.roleId.name);
+
+        // Debugging: Check if the role is being correctly passed
+        console.log("User role:", res.data.data.roleId.name);
+
+        // Redirect based on user role
+        if (res.data.data.roleId.name === "USER") {
+          navigate("/user");
+        } else if (res.data.data.roleId.name === "Society") {
+          navigate("/society");
+        } else {
+          // This block helps catch unexpected roles
+          console.log("Unexpected role:", res.data.data.roleId.name);
+        }
+      }
+    } catch (error) {
+      alert("Login Failed");
+      console.error(error); // Log the error for debugging
+    }
+  };
+   <li className="nav-item">
+                <a href="#" className="nav-link">
+                  <i className="nav-icon bi bi-box-seam-fill" />
+                  <p>
+                    Widgets
+                    <i className="nav-arrow bi bi-chevron-right" />
+                  </p>
+                </a>
+                <ul className="nav nav-treeview">
+                  <li className="nav-item">
+                    <a href="./widgets/small-box.html" className="nav-link">
+                      <i className="nav-icon bi bi-circle" />
+                      <p>Small Box</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="./widgets/info-box.html" className="nav-link">
+                      <i className="nav-icon bi bi-circle" />
+                      <p>info Box</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="./widgets/cards.html" className="nav-link">
+                      <i className="nav-icon bi bi-circle" />
+                      <p>Cards</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+    
+  
+
+
